@@ -15,6 +15,7 @@ public class App
 {
     protected AbstractUI aui;
     protected Buffer buffer;
+    
     public App()
     {
         
@@ -37,11 +38,13 @@ public class App
         ICommand copy = new Copy(buffer,aui);
         ICommand insert = new Insert(buffer,aui);
         ICommand paste = new Paste(buffer,aui);
+        ICommand undo = new Undo(buffer,aui);
         
         aui.setBackspace( backspace );
         aui.setCopy( copy );
         aui.setInsert( insert );
         aui.setPaste( paste );
+        aui.setUndo(undo);
         aui.setBuffer( buffer );
     }
 

@@ -23,6 +23,7 @@ public class Paste implements ICommand
     @Override
     public void execute()
     {
+        buffer.saveInMemento();
         buffer.paste();
     }
 

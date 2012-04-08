@@ -18,6 +18,7 @@ public class Insert implements ICommand
     
     public void execute()
     {
+        buffer.saveInMemento();
         buffer.insert(ui.getContent());
     }
 

@@ -21,6 +21,7 @@ public class GUI implements KeyListener, IObserver, ActionListener {
     private javax.swing.JTextArea jTextPane1;
     private javax.swing.JButton jButtonCopy;
     private javax.swing.JButton jButtonPaste;
+    private javax.swing.JButton jButtonUndo;
     private javax.swing.JPanel jPanel1;
     protected AbstractUI ui;
 
@@ -37,6 +38,7 @@ public class GUI implements KeyListener, IObserver, ActionListener {
         jPanel1 = new javax.swing.JPanel();
         jButtonCopy = new javax.swing.JButton();
         jButtonPaste = new javax.swing.JButton();
+        jButtonUndo = new javax.swing.JButton();
 
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -64,6 +66,10 @@ public class GUI implements KeyListener, IObserver, ActionListener {
         jButtonPaste.setText("Paste");
         jPanel1.add(jButtonPaste);
         jButtonPaste.getAccessibleContext().setAccessibleName("paste");
+        
+        jButtonUndo.setText("Undo");
+        jPanel1.add(jButtonUndo);
+        jButtonUndo.getAccessibleContext().setAccessibleName("Undo");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -78,8 +84,9 @@ public class GUI implements KeyListener, IObserver, ActionListener {
         jTextPane1.addKeyListener(this);
         jButtonCopy.addActionListener(this);
         jButtonPaste.addActionListener(this);
+        jButtonUndo.addActionListener(this);
 
-        //frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);
     }
 
     private void jTextPane1KeyPressed(java.awt.event.KeyEvent evt) {
@@ -138,6 +145,10 @@ public class GUI implements KeyListener, IObserver, ActionListener {
         if (ae.getSource().equals(jButtonPaste)) {
             ui.invoquePaste();
         }
+        if(ae.getSource().equals(jButtonUndo)) {
+            ui.invoqueUndo();
+        }
         jTextPane1.getCaret().setVisible(true);
+        
     }
 }

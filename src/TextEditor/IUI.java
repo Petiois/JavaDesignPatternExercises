@@ -20,6 +20,8 @@ public interface IUI
     public void invoqueInsert();
 
     public void invoquePaste();
+    
+    public void invoqueUndo();
 
     public ICommand getBackspace();
 
@@ -36,6 +38,10 @@ public interface IUI
     public ICommand getPaste();
 
     public void setPaste(ICommand paste);
+    
+    public ICommand getUndo();
+
+    public void setUndo(ICommand undo);
 
     public void setBuffer(Buffer buffer);
     

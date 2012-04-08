@@ -10,4 +10,6 @@ package TextEditor;
  */
 public interface IMemento
 {
+    public void restoreFromMomento(Memento pMemento);
+    public void saveInMemento();
 }

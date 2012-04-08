@@ -14,6 +14,7 @@ public class AbstractUI implements IUI {
     protected ICommand copy;
     protected ICommand insert;
     protected ICommand paste;
+    protected ICommand undo;
     protected Buffer buffer;
     protected String content;
     protected String ClipBoard;
@@ -103,6 +104,23 @@ public class AbstractUI implements IUI {
 
     public Buffer getBuffer() {
         return buffer;
+    }
+
+    @Override
+    public void invoqueUndo() {
+        if (undo != null) {
+            undo.execute();
+        }
+    }
+
+    @Override
+    public ICommand getUndo() {
+        return undo;
+    }
+
+    @Override
+    public void setUndo(ICommand undo) {
+        this.undo = undo;
     }
 
 }

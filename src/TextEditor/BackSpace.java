@@ -11,8 +11,8 @@ package TextEditor;
 public class BackSpace implements ICommand
 {
 
-    protected IBuffer buffer;
-    protected IUI ui;
+    protected Buffer buffer;
+    protected AbstractUI ui;
 
     public BackSpace(Buffer buffer, AbstractUI ui)
     {
@@ -25,6 +25,7 @@ public class BackSpace implements ICommand
     @Override
     public void execute()
     {
+        buffer.saveInMemento();
         buffer.backspace();
     }
 

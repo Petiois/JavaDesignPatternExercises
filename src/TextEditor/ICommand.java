@@ -8,7 +8,7 @@ package TextEditor;
  *
  * @author GV
  */
-public interface ICommand extends IMemento
+public interface ICommand //extends IMemento
 {
 
     public void execute();
