@@ -11,9 +11,11 @@ public class Buffer implements ISubject, IBuffer
 {
 
     protected ArrayList<String> string = new ArrayList<String>();
-    protected Selection selection;
     protected LinkedList<IObserver> ObserverList = new LinkedList<IObserver>();
-
+    protected ClipBoard clipBoard = new ClipBoard("");
+    protected int CaretDebut=0;
+    protected int CaretFin=0;
+    
     Buffer()
     {
     }
@@ -27,15 +29,21 @@ public class Buffer implements ISubject, IBuffer
 
     @Override
     public void paste()
-    {
-        throw new UnsupportedOperationException( "Not yet implemented" );
-
+    {   
+        if(CaretFin-CaretDebut>0){
+            this.backspace();
+        }
+        ArrayList<String> clipBoard1 = clipBoard.getClipBoard();
+        for(int i=0;i<clipBoard1.size();i++){
+            string.add(CaretDebut+i,clipBoard1.get(i));
+        }
+            this.notifySubjects();
     }
 
     @Override
-    public void copy()
+    public void copy(String clipboard)
     {
-        throw new UnsupportedOperationException( "Not yet implemented" );
+        clipBoard.setClipBoard(clipboard);
     }
 
     @Override
@@ -43,7 +51,13 @@ public class Buffer implements ISubject, IBuffer
     {
         if ( !string.isEmpty() )
         {
-            string.remove( string.size() - 1 );
+            int debut=CaretDebut;
+            int fin=CaretFin;
+            int i=0;
+            do {
+                string.remove(Math.max(0,debut-1));
+                i++;
+            } while(i<fin-debut);
         }
         this.notifySubjects();
     }
@@ -79,4 +93,24 @@ public class Buffer implements ISubject, IBuffer
         return content;
     }
 
+    public ClipBoard getClipBoard() {
+        return clipBoard;
+    }
+    
+    public int getCaretDebut() {
+        return CaretDebut;
+    }
+
+    public void setCaretDebut(int CaretDebut) {
+        this.CaretDebut = CaretDebut;
+    }
+
+    public int getCaretFin() {
+        return CaretFin;
+    }
+
+    public void setCaretFin(int CaretFin) {
+        this.CaretFin = CaretFin;
+    }
+   
 }

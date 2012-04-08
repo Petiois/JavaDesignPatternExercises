@@ -17,7 +17,7 @@ public class Copy implements ICommand
     @Override
     public void execute()
     {
-        buffer.copy();
+        buffer.copy(ui.ClipBoard);
     }
 
     public void setBuffer(Buffer buffer)

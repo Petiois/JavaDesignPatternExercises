@@ -14,7 +14,7 @@ interface IBuffer
 
     void paste();
 
-    void copy();
+    void copy(String clipboard);
 
     void backspace();
 
